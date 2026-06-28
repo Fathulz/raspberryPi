@@ -1,0 +1,20 @@
+sudo tee /etc/systemd/system/photobooth-print.service << 'EOF'
+[Unit]
+Description=ALK Photobooth Thermal Printer Client
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/print_client.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
